@@ -1,0 +1,39 @@
+  <header role="banner"
+    class="gennext-l-header has-backface-visibility--hidden">
+    <div class="gennext-l-header__bar">
+      <h1 class="gennext-l-header__logo">
+        <img src="images/Codehub.png" title="" aria-hidden="true"/>
+      </h1>
+
+      <button class="gennext-l-header__menu-btn" role="button">
+       <a href="#" id="navigation-toggle" ng-click="toggleState()"> <img src="images/hamburger.svg" alt="Menu" ></a>
+      </button>
+
+      <section class="gennext-l-header__bar__actions">
+        <ul class="gennext-l-header__bar__actions__navigation">
+          <li><a href="#/home" title="Home">Home</a></li>
+          <li><a href="#/about" title="About us">About us</a></li>
+          <li><a href="#/blog" title="blog">Blog</a></li>
+          <li><a href="#/training" title="Training">Training</a></li>
+          <li ng-if="! isLoggedIn === true" ><a href="#/login" title="Login">Login</a></li>
+          <li ng-if="isLoggedIn === true" ><a href="#/signout" title="Login">Logout</a></li>
+        </ul>
+      </section>
+    </div>
+  </header>
+
+  <div>
+      <div class="sidebar" sidebar-directive="state">
+    <nav role="navigation"
+    class="gennext-l-navdrawer">
+    <h4 class="gennext-l-navdrawer__headline">Navigation</h4>
+    <ul class="gennext-l-navdrawer__navigation">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/about-us.html" title="About us">About us</a></li>
+      <li><a href="/products.html" title="Products">Products</a></li>
+      <li><a href="/training.html" title="Training">Training</a></li>
+      <li><a href="http://blog.thoughtram.io" title="Blog">Blog</a></li>
+    </ul>
+  </nav>
+  </div>
+  </div>
