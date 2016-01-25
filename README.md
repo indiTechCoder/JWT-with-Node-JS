@@ -51,6 +51,40 @@ passport.use('google', new GoogleStrategy({
 	}
 ));
 
+
+passport.use('facebook', new FacebookStrategy({
+			clientID: CONSTANTS.FACEBOOK_AUTH.FACEBOOK_CLIENT_ID,
+			clientSecret: CONSTANTS.FACEBOOK_AUTH.FACEBOOK_SECRET_KEY,
+			callbackURL: CONSTANTS.DEV_DOMAIN + CONSTANTS.FACEBOOK_AUTH.FACEBOOK_CALLBACK_URL,
+			profileFields: ['id', 'emails', 'name']
+		},
+		function(accessToken, refreshToken, profile, done) {
+			process.nextTick(function () {
+				User.findUserByEmailId(profile.emails[0].value, function(err, usr){
+					if(err)
+						return done(err);
+					if(usr) {
+						return done(null, usr);
+					} else {
+						var UserToBeSaved = new User();
+						UserToBeSaved.facebook_profile_id = profile.id;
+						UserToBeSaved.access_token = accessToken;
+						UserToBeSaved.token = User.Token({token: accessToken});
+						UserToBeSaved.name = profile.name.givenName +' '+ profile.name.familyName;
+						UserToBeSaved.email = profile.emails[0].value;
+						UserToBeSaved.role = 'guest';
+						UserToBeSaved.save(function(err){
+							if(err) {
+								throw err;
+							}
+							return done(null, UserToBeSaved);
+						});
+					}
+				});
+			});
+		}
+));
+
 ```
 
 Create Auth Token
