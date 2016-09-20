@@ -23,8 +23,8 @@ module.exports = function(passport,config,CONSTANTS) {
 	passport.deserializeUser(User.deserializeUser());
 
 	passport.use(new TwitterStrategy({
-		consumerKey		 : CONSTANTS.FACEBOOK_AUTH.FACEBOOK_CLIENT_ID,
-		consumerSecret	: CONSTANTS.FACEBOOK_AUTH.FACEBOOK_SECRET_KEY,
+		consumerKey		 : CONSTANTS.TWITTER_AUTH.TWITTER_CLIENT_ID,
+		consumerSecret	: CONSTANTS.TWITTER_AUTH.TWITTER_SECRET_KEY,
 		callbackURL		 : '/auth/twitter/callback'
 	}, function(accessToken, refreshToken, profile, done) {
 
