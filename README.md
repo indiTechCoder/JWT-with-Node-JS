@@ -126,7 +126,7 @@ UserSchema.statics.createToken = function(email, callback) {
 Run the tutorial (each file is numbered)
 ====================
 ```Terminal
-git clone git remote add origin https://github.com/kumartarun/JWT-with-Node-JS.git
+git clone origin https://github.com/kumartarun/JWT-with-Node-JS.git
 npm install
 npm start
 ```
